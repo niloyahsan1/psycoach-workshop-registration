@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Workshop Event</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-content">
+      <h1>The Last Chapter — BRACU Day Tour</h1>
+      <p class="subtitle">Join us for an unforgettable day of fun and memories</p>
+      <div id="countdown" class="countdown"></div>
+      <a href="register.html" class="btn-primary">Register Now</a>
+    </div>
+  </header>
+
+  <section class="highlights">
+    <h2>Event Highlights</h2>
+    <div class="cards">
+      <div class="card">
+        <img src="https://cdn-icons-png.flaticon.com/512/69/69906.png" alt="Travel" />
+        <h3>Travel</h3>
+        <p>Comfortable transport and scenic routes for all participants.</p>
+      </div>
+      <div class="card">
+        <img src="https://cdn-icons-png.flaticon.com/512/727/727245.png" alt="Music" />
+        <h3>Music</h3>
+        <p>Live performances and DJ sessions to make it unforgettable.</p>
+      </div>
+      <div class="card">
+        <img src="https://cdn-icons-png.flaticon.com/512/1046/1046784.png" alt="Food" />
+        <h3>Food</h3>
+        <p>Delicious meals and refreshments throughout the day.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="terms">
+    <h2>Terms & Conditions</h2>
+    <ul>
+      <li>Participants must bring their BRACU ID card.</li>
+      <li>Registrations are non-refundable.</li>
+      <li>Follow all safety guidelines during the trip.</li>
+      <li>Any misconduct may result in disqualification.</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>© 2025 Team Shunte Chai Workshop· Built for Workshop Registration</p>
+  </footer>
+
+  <script>
+    const eventDate = new Date("October 21, 2025 10:00:00").getTime();
+    const countdownEl = document.getElementById("countdown");
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const diff = eventDate - now;
+      if (diff <= 0) {
+        countdownEl.textContent = "Event Started!";
+        return;
+      }
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const mins = Math.floor((diff / (1000 * 60)) % 60);
+      const secs = Math.floor((diff / 1000) % 60);
+      countdownEl.textContent = `${days}d ${hours}h ${mins}m ${secs}s`;
+    };
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
