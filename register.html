@@ -6,106 +6,70 @@
   <title>Register | Team Shunte Chai Workshop</title>
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-</head>
-<body class="form-body">
-  <div class="form-container" id="formSection">
-    <h2 class="title">Workshop Registration</h2>
-    <p class="subtitle">Fill in your details below to register</p>
-
-    <form id="googleForm">
-      <label for="email">Email</label>
-      <input type="email" name="entry.616235479" id="email" placeholder="you@example.com" required />
-
-      <label for="name">Full Name</label>
-      <input type="text" name="entry.1806591854" id="name" placeholder="Your full name" required />
-
-      <label for="phone">Phone</label>
-      <input type="text" name="entry.1675229460" id="phone" placeholder="01XXXXXXXXX" required />
-
-      <label for="university">University</label>
-      <input type="text" name="entry.1605638227" id="university" placeholder="BRACU/NSU/CUB" required />
-
-      <button type="submit" class="btn-primary">Register</button>
-    </form>
-
-    <p id="msg" class="note"></p>
-  </div>
-
-  <!-- ✅ Thank You Section -->
-  <div class="form-container" id="thankYouSection" style="display:none;">
-    <h2 class="title">✅ Registration Successful!</h2>
-    <p class="subtitle">Thank you for registering, <span id="userName"></span> 🎉</p>
-    <p class="subtitle">Your entry ticket is ready below:</p>
-
-    <div id="ticket" class="ticket">
-      <h3>🎟️ Team Shunte Chai Workshop 2025</h3>
-      <p><strong>Name:</strong> <span id="ticketName"></span></p>
-      <p><strong>University:</strong> <span id="ticketUni"></span></p>
-      <p><strong>Registration ID:</strong> <span id="ticketId"></span></p>
-      <p><strong>Date:</strong> December 31, 2025</p>
-      <p><strong>Venue:</strong> BRAC University Auditorium</p>
-    </div>
-
-    <button class="btn-primary" id="downloadBtn">Download Ticket (JPG)</button>
-    <a href="index.html" class="btn-primary" style="background:#43a047;">Back to Home</a>
-  </div>
-
-  <footer>
-    <p>© 2025 Team Shunte Chai Workshop · Built for Workshop Registration</p>
-  </footer>
-
-  <script>
-    const form = document.getElementById("googleForm");
-    const msg = document.getElementById("msg");
-    const thankYouSection = document.getElementById("thankYouSection");
-    const formSection = document.getElementById("formSection");
-
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-
-      const name = document.getElementById("name").value.trim();
-      const university = document.getElementById("university").value.trim();
-      const formData = new FormData(form);
-      const googleFormURL = "https://docs.google.com/forms/d/e/1FAIpQLSeshwJw-5b0it00zVsuN0ziXGPFMGxPa1lbzxHm-xcvaoFcTg/formResponse";
-
-      fetch(googleFormURL, {
-        method: "POST",
-        body: formData,
-        mode: "no-cors",
-      })
-        .then(() => {
-          // Hide form and show thank you message
-          formSection.style.display = "none";
-          thankYouSection.style.display = "block";
-
-          // Populate ticket
-          document.getElementById("userName").textContent = name;
-          document.getElementById("ticketName").textContent = name;
-          document.getElementById("ticketUni").textContent = university;
-          document.getElementById("ticketId").textContent =
-            "TS-" + Math.floor(100000 + Math.random() * 900000);
-
-          form.reset();
-        })
-        .catch(() => {
-          msg.innerText = "⚠️ Error submitting form. Please try again.";
-          msg.style.color = "red";
-        });
-    });
-
-    // 🎟️ Download ticket as JPG
-    document.getElementById("downloadBtn").addEventListener("click", () => {
-      const ticketEl = document.getElementById("ticket");
-      html2canvas(ticketEl).then((canvas) => {
-        const link = document.createElement("a");
-        link.download = "Workshop_Ticket.jpg";
-        link.href = canvas.toDataURL("image/jpeg");
-        link.click();
-      });
-    });
-  </script>
-
   <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f9fbff;
+      margin: 0;
+      padding: 0;
+    }
+    .form-body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .form-container {
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 420px;
+      padding: 2rem;
+      text-align: center;
+    }
+    .title {
+      color: #1a237e;
+      margin-bottom: 10px;
+    }
+    .subtitle {
+      color: #555;
+      margin-bottom: 25px;
+      font-size: 0.95rem;
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: #333;
+      text-align: left;
+      font-weight: 500;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 0.9rem;
+    }
+    .btn-primary {
+      background: #1a73e8;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+    .btn-primary:hover {
+      background: #0d47a1;
+    }
+    .note {
+      margin-top: 10px;
+      font-size: 0.9rem;
+    }
     .ticket {
       background: linear-gradient(135deg, #f0f6ff, #ffffff);
       border: 2px dashed #1a73e8;
@@ -124,6 +88,114 @@
       font-size: 0.95rem;
       margin: 5px 0;
     }
+    footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #777;
+      margin-top: 20px;
+      padding: 10px;
+    }
   </style>
+</head>
+<body class="form-body">
+  <div class="form-container" id="formSection">
+    <h2 class="title">Workshop Registration</h2>
+    <p class="subtitle">Fill in your details below to register</p>
+
+    <form id="googleForm">
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="you@example.com" required />
+
+      <label for="name">Full Name</label>
+      <input type="text" id="name" placeholder="Your full name" required />
+
+      <label for="phone">Phone</label>
+      <input type="text" id="phone" placeholder="01XXXXXXXXX" required />
+
+      <label for="university">University</label>
+      <input type="text" id="university" placeholder="BRACU/NSU/CUB" required />
+
+      <button type="submit" class="btn-primary">Register</button>
+    </form>
+
+    <p id="msg" class="note"></p>
+  </div>
+
+  <!-- ✅ Thank You Section -->
+  <div class="form-container" id="thankYouSection" style="display:none;">
+    <h2 class="title">✅ Registration Successful!</h2>
+    <p class="subtitle">Thank you for registering, <span id="userName"></span> 🎉</p>
+    <p class="subtitle">Your entry ticket is ready below:</p>
+
+    <div id="ticket" class="ticket">
+      <h3>🎟️ Team Shunte Chai Workshop 2025</h3>
+      <p><strong>Name:</strong> <span id="ticketName"></span></p>
+      <p><strong>University:</strong> <span id="ticketUni"></span></p>
+      <p><strong>Registration ID:</strong> <span id="ticketId"></span></p>
+      <p><strong>Date:</strong> October 23-25, 2025</p>
+      <p><strong>Venue:</strong> BRAC University Auditorium</p>
+    </div>
+
+    <button class="btn-primary" id="downloadBtn">Download Ticket (JPG)</button>
+    <a href="index.html" class="btn-primary" style="background:#43a047;">Back to Home</a>
+  </div>
+
+  <footer>
+    <p>© 2025 Team Shunte Chai Workshop · Built for Workshop Registration</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById("googleForm");
+    const msg = document.getElementById("msg");
+    const thankYouSection = document.getElementById("thankYouSection");
+    const formSection = document.getElementById("formSection");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+      const name = document.getElementById("name").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const university = document.getElementById("university").value.trim();
+
+      const data = { name, email, phone, university };
+
+      try {
+        await fetch("YOUR_SCRIPT_URL_HERE", {   // 👈 Replace this with your Apps Script URL
+          method: "POST",
+          mode: "cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+
+        // Hide form, show thank you message
+        formSection.style.display = "none";
+        thankYouSection.style.display = "block";
+
+        // Fill ticket data
+        document.getElementById("userName").textContent = name;
+        document.getElementById("ticketName").textContent = name;
+        document.getElementById("ticketUni").textContent = university;
+        document.getElementById("ticketId").textContent =
+          "TS-" + Math.floor(100000 + Math.random() * 900000);
+
+        form.reset();
+      } catch (error) {
+        msg.textContent = "⚠️ Failed to submit. Try again later.";
+        msg.style.color = "red";
+      }
+    });
+
+    // 🎟️ Download ticket as JPG
+    document.getElementById("downloadBtn").addEventListener("click", () => {
+      const ticketEl = document.getElementById("ticket");
+      html2canvas(ticketEl).then((canvas) => {
+        const link = document.createElement("a");
+        link.download = "Workshop_Ticket.jpg";
+        link.href = canvas.toDataURL("image/jpeg");
+        link.click();
+      });
+    });
+  </script>
 </body>
 </html>
