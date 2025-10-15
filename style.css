@@ -158,7 +158,7 @@ footer {
     justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
-    padding: 30px 20px; 
+    padding: 30px 20px;
     overflow-y: auto;
 }
 
@@ -360,4 +360,40 @@ footer {
     text-align: center;
     font-size: 0.85rem;
     color: #555;
+}
+
+@media (max-width: 480px) {
+    .event-card {
+        padding: 20px;
+        border-radius: 16px;
+    }
+
+    .banner-img {
+        height: 200px; /* reduce banner height */
+        border-radius: 12px;
+    }
+
+    .event-title {
+        font-size: 1.5rem;
+    }
+
+    .event-subtitle {
+        font-size: 1rem;
+    }
+
+    .count-box {
+        width: 70px;
+        padding: 10px;
+    }
+
+    .btn-register {
+        font-size: 1rem;
+        padding: 14px 20px;
+        border-radius: 12px;
+    }
+
+    .event-info {
+        flex-direction: column;
+        gap: 8px;
+    }
 }
