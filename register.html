@@ -31,7 +31,7 @@
     <p id="msg" class="note"></p>
   </div>
 
-  <!-- ✅ Thank-You / Ticket Section -->
+  <!-- ✅ Thank You Section -->
   <div class="form-container" id="thankYouSection" style="display:none;">
     <h2 class="title">✅ Registration Successful!</h2>
     <p class="subtitle">Thank you for registering, <span id="userName"></span> 🎉</p>
@@ -68,23 +68,25 @@
       const phone = document.getElementById("phone").value.trim();
       const university = document.getElementById("university").value.trim();
 
+      const googleFormURL = "YOUR_SCRIPT_URL_HERE"; // Replace this with your deployed script URL
+
       const data = { name, email, phone, university };
 
       msg.textContent = "Submitting...";
       msg.style.color = "#555";
 
       try {
-        await fetch("https://script.google.com/macros/s/AKfycbxkU-kLykhZih7nb0CsHTCdT_IxgeyZiX_t2psh8MwDyBgdX20ApnBVS1ff1DNtluU/exec", {
+        const response = await fetch(googleFormURL, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data),
         });
 
-        // Hide form and show thank-you
+        if (!response.ok) throw new Error("Network error");
+
         formSection.style.display = "none";
         thankYouSection.style.display = "block";
 
-        // Populate ticket
         document.getElementById("userName").textContent = name;
         document.getElementById("ticketName").textContent = name;
         document.getElementById("ticketUni").textContent = university;
@@ -99,7 +101,6 @@
       }
     });
 
-    // 🎟️ Download ticket as JPG
     document.getElementById("downloadBtn").addEventListener("click", () => {
       const ticketEl = document.getElementById("ticket");
       html2canvas(ticketEl).then((canvas) => {
