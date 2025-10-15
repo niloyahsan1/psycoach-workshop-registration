@@ -6,96 +6,6 @@
   <title>Register | Team Shunte Chai Workshop</title>
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #f9fbff;
-      margin: 0;
-      padding: 0;
-    }
-    .form-body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-    }
-    .form-container {
-      background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      width: 90%;
-      max-width: 420px;
-      padding: 2rem;
-      text-align: center;
-    }
-    .title {
-      color: #1a237e;
-      margin-bottom: 10px;
-    }
-    .subtitle {
-      color: #555;
-      margin-bottom: 25px;
-      font-size: 0.95rem;
-    }
-    label {
-      display: block;
-      margin-bottom: 6px;
-      color: #333;
-      text-align: left;
-      font-weight: 500;
-    }
-    input {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 0.9rem;
-    }
-    .btn-primary {
-      background: #1a73e8;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: background 0.3s ease;
-    }
-    .btn-primary:hover {
-      background: #0d47a1;
-    }
-    .note {
-      margin-top: 10px;
-      font-size: 0.9rem;
-    }
-    .ticket {
-      background: linear-gradient(135deg, #f0f6ff, #ffffff);
-      border: 2px dashed #1a73e8;
-      border-radius: 15px;
-      padding: 20px;
-      margin: 20px 0;
-      text-align: left;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
-    .ticket h3 {
-      color: #1a237e;
-      margin-bottom: 10px;
-    }
-    .ticket p {
-      color: #333;
-      font-size: 0.95rem;
-      margin: 5px 0;
-    }
-    footer {
-      text-align: center;
-      font-size: 0.85rem;
-      color: #777;
-      margin-top: 20px;
-      padding: 10px;
-    }
-  </style>
 </head>
 <body class="form-body">
   <div class="form-container" id="formSection">
@@ -121,7 +31,7 @@
     <p id="msg" class="note"></p>
   </div>
 
-  <!-- ✅ Thank You Section -->
+  <!-- ✅ Thank-You / Ticket Section -->
   <div class="form-container" id="thankYouSection" style="display:none;">
     <h2 class="title">✅ Registration Successful!</h2>
     <p class="subtitle">Thank you for registering, <span id="userName"></span> 🎉</p>
@@ -132,7 +42,7 @@
       <p><strong>Name:</strong> <span id="ticketName"></span></p>
       <p><strong>University:</strong> <span id="ticketUni"></span></p>
       <p><strong>Registration ID:</strong> <span id="ticketId"></span></p>
-      <p><strong>Date:</strong> October 23-25, 2025</p>
+      <p><strong>Date:</strong> December 31, 2025</p>
       <p><strong>Venue:</strong> BRAC University Auditorium</p>
     </div>
 
@@ -153,26 +63,28 @@
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      const email = document.getElementById("email").value.trim();
       const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
       const phone = document.getElementById("phone").value.trim();
       const university = document.getElementById("university").value.trim();
 
-      const data = { email, name, phone, university };
+      const data = { name, email, phone, university };
+
+      msg.textContent = "Submitting...";
+      msg.style.color = "#555";
 
       try {
-        await fetch("https://script.google.com/macros/s/AKfycbxkU-kLykhZih7nb0CsHTCdT_IxgeyZiX_t2psh8MwDyBgdX20ApnBVS1ff1DNtluU/exec", {   // 👈 Replace this with your Apps Script URL
+        await fetch("https://script.google.com/macros/s/AKfycbxkU-kLykhZih7nb0CsHTCdT_IxgeyZiX_t2psh8MwDyBgdX20ApnBVS1ff1DNtluU/exec", {
           method: "POST",
-          mode: "cors",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data),
         });
 
-        // Hide form, show thank you message
+        // Hide form and show thank-you
         formSection.style.display = "none";
         thankYouSection.style.display = "block";
 
-        // Fill ticket data
+        // Populate ticket
         document.getElementById("userName").textContent = name;
         document.getElementById("ticketName").textContent = name;
         document.getElementById("ticketUni").textContent = university;
@@ -183,6 +95,7 @@
       } catch (error) {
         msg.textContent = "⚠️ Failed to submit. Try again later.";
         msg.style.color = "red";
+        console.error(error);
       }
     });
 
@@ -197,5 +110,26 @@
       });
     });
   </script>
+
+  <style>
+    .ticket {
+      background: linear-gradient(135deg, #f0f6ff, #ffffff);
+      border: 2px dashed #1a73e8;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      text-align: left;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .ticket h3 {
+      color: #1a237e;
+      margin-bottom: 10px;
+    }
+    .ticket p {
+      color: #333;
+      font-size: 0.95rem;
+      margin: 5px 0;
+    }
+  </style>
 </body>
 </html>
