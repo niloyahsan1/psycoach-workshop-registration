@@ -2,11 +2,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+    font-family: "Poppins";
 }
 
 body {
-    background: linear-gradient(135deg, #e6eeff, #f8faff);
+    background: linear-gradient(to bottom, #eef3ff, #ffffff);
     color: #222;
     display: flex;
     flex-direction: column;
@@ -27,6 +27,14 @@ body {
     font-size: 2rem;
     color: #1a237e;
     margin-bottom: 10px;
+}
+
+.banner {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .subtitle {
@@ -59,7 +67,7 @@ body {
 }
 
 .ticket {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: "Times New Roman", Times, serif;
 }
 
 /* HIGHLIGHTS */
@@ -112,7 +120,6 @@ body {
     font-size: 0.9rem;
 }
 
-/* TERMS */
 .terms {
     width: 90%;
     max-width: 800px;
@@ -148,13 +155,17 @@ footer {
     background: linear-gradient(135deg, #e6eeff, #f8faff);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh;
+    padding: 30px 20px; 
+    overflow-y: auto;
 }
 
 .form-container {
     background: #fff;
     border-radius: 20px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     padding: 40px 30px;
     width: 90%;
     max-width: 400px;
@@ -206,4 +217,147 @@ form .btn-primary {
     color: #888;
     font-size: 0.85rem;
     margin-top: 10px;
+}
+
+body.event-body {
+    background: linear-gradient(to bottom, #eef3ff, #ffffff);
+    font-family: "Poppins";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 30px;
+    margin: 0;
+}
+
+.event-card {
+    background: #ffffff;
+    border-radius: 24px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    padding: 40px; /* 🔹 increased padding */
+    max-width: 720px; /* 🔹 wider card */
+    transition: all 0.3s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+}
+
+.banner-section {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.banner-img {
+    width: 100%;
+    object-fit: cover;
+    height: 320px; /* 🔹 taller banner */
+    border-radius: 18px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+.event-date {
+    position: absolute;
+    top: -5px;
+    left: 10px;
+    background: #fff;
+    color: #1a237e;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.event-title {
+    color: #1a237e;
+    font-size: 2rem; /* 🔹 larger title */
+    margin: 20px 0 8px;
+}
+
+.event-subtitle {
+    color: #616161;
+    font-size: 1.1rem; /* 🔹 slightly bigger subtitle */
+    margin-bottom: 25px;
+}
+
+.event-info {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 25px;
+    cursor: pointer;
+}
+
+.info-item {
+    background: #f3f5ff;
+    color: #1a237e;
+    padding: 8px 15px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.countdown-label {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.countdown-grid {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.count-box {
+    background: #edefff;
+    border-radius: 12px;
+    padding: 16px 18px;
+    width: 100px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.count-box span {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1a237e;
+}
+
+.count-box small {
+    display: block;
+    font-size: 0.7rem;
+    color: #757575;
+}
+
+.btn-register {
+    display: inline-block;
+    background: linear-gradient(135deg, #1a73e8, #7e57c2);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(26, 115, 232, 0.3);
+    font-size: 1.1rem;
+    padding: 16px 28px;
+    border-radius: 14px;
+}
+
+.btn-register:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(26, 115, 232, 0.4);
+    background: linear-gradient(135deg, #7e57c2, #1a73e8);
+}
+
+footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #555;
 }

@@ -4,70 +4,66 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Workshop Event</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <header class="hero">
-    <div class="hero-content">
-      <h1>Talk to Me, Not the Machine - Workshop Registration</h1>
-      <p class="subtitle">Slogan</p>
-      <div id="countdown" class="countdown"></div>
-      <a href="register.html" class="btn-primary">Register Now</a>
+<body class="event-body">
+  <div class="event-card">
+    <div class="banner-section">
+      <div class="event-date">Oct 23-25, 2025</div>
+      <img src="images/Banner.png" alt="Workshop Banner" class="banner-img" />
     </div>
-  </header>
 
-  <section class="highlights">
-    <h2>Workshop Highlights</h2>
-    <div class="cards">
-      <div class="card">
-        <img src="https://cdn-icons-png.flaticon.com/512/69/69906.png" alt="Travel" />
-        <h3>Travel</h3>
-        <p>Comfortable transport and scenic routes for all participants.</p>
+    <h1 class="event-title">Talk to Me, Not the Machine</h1>
+    <p class="event-subtitle">Team Shunte Chai Workshop 2025</p>
+
+    <div class="event-info">
+      <div class="info-item">
+        <span>📅 October 20, 2025</span>
       </div>
-      <div class="card">
-        <img src="https://cdn-icons-png.flaticon.com/512/727/727245.png" alt="Music" />
-        <h3>Music</h3>
-        <p>Live performances and DJ sessions to make it unforgettable.</p>
+      <div class="info-item">
+        <span>🕗 11:59 PM</span>
       </div>
-      <div class="card">
-        <img src="https://cdn-icons-png.flaticon.com/512/1046/1046784.png" alt="Food" />
-        <h3>Food</h3>
-        <p>Delicious meals and refreshments throughout the day.</p>
+      <div class="info-item">
+        <span>🎤 Workshop</span>
       </div>
     </div>
-  </section>
 
-  <section class="terms">
-    <h2>Terms & Conditions</h2>
-    <ul>
-      <li>Participants must bring their BRACU ID card.</li>
-      <li>Registrations are non-refundable.</li>
-      <li>Follow all safety guidelines during the trip.</li>
-      <li>Any misconduct may result in disqualification.</li>
-    </ul>
-  </section>
+    <h3 class="countdown-label">Registration Countdown</h3>
+    <div id="countdown" class="countdown-grid"></div>
+
+    <a href="register.html" class="btn-register">Register Now</a>
+  </div>
 
   <footer>
     <p>© 2025 Team Shunte Chai Workshop· Built for Workshop Registration</p>
   </footer>
 
   <script>
-    const eventDate = new Date("October 21, 2025 23:00:00").getTime();
+    const eventDate = new Date("October 21, 2025 10:00:00").getTime();
     const countdownEl = document.getElementById("countdown");
 
-    const updateCountdown = () => {
+    function updateCountdown() {
       const now = new Date().getTime();
       const diff = eventDate - now;
+
       if (diff <= 0) {
-        countdownEl.textContent = "Event Started!";
+        countdownEl.innerHTML = "<p>Event Started!</p>";
         return;
       }
+
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
       const mins = Math.floor((diff / (1000 * 60)) % 60);
       const secs = Math.floor((diff / 1000) % 60);
-      countdownEl.textContent = `${days}d ${hours}h ${mins}m ${secs}s`;
-    };
+
+      countdownEl.innerHTML = `
+        <div class="count-box"><span>${days}</span><small>Days</small></div>
+        <div class="count-box"><span>${hours}</span><small>Hours</small></div>
+        <div class="count-box"><span>${mins}</span><small>Minutes</small></div>
+        <div class="count-box"><span>${secs}</span><small>Seconds</small></div>
+      `;
+    }
 
     updateCountdown();
     setInterval(updateCountdown, 1000);
