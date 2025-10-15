@@ -236,8 +236,8 @@ body.event-body {
     border-radius: 24px;
     text-align: center;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-    padding: 40px; /* 🔹 increased padding */
-    max-width: 720px; /* 🔹 wider card */
+    padding: 40px; 
+    max-width: 720px; 
     transition: all 0.3s ease;
 }
 
@@ -253,7 +253,7 @@ body.event-body {
 .banner-img {
     width: 100%;
     object-fit: cover;
-    height: 320px; /* 🔹 taller banner */
+    height: 320px; 
     border-radius: 18px;
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
 }
@@ -273,13 +273,13 @@ body.event-body {
 
 .event-title {
     color: #1a237e;
-    font-size: 2rem; /* 🔹 larger title */
+    font-size: 2rem; 
     margin: 20px 0 8px;
 }
 
 .event-subtitle {
     color: #616161;
-    font-size: 1.1rem; /* 🔹 slightly bigger subtitle */
+    font-size: 1.1rem;
     margin-bottom: 25px;
 }
 
@@ -369,10 +369,10 @@ footer {
     }
 
     .banner-img {
-        height: 200px; /* reduce banner height */
+        height: 200px; 
         border-radius: 12px;
     }
-
+/* 
     .event-title {
         font-size: 1.5rem;
     }
@@ -395,5 +395,5 @@ footer {
     .event-info {
         flex-direction: column;
         gap: 8px;
-    }
+    } */
 }
