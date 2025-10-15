@@ -58,6 +58,10 @@ body {
     background: #0d47a1;
 }
 
+.ticket {
+    font-family: 'Times New Roman', Times, serif;
+}
+
 /* HIGHLIGHTS */
 .highlights {
     width: 90%;

@@ -23,7 +23,7 @@
       <input type="text" id="phone" placeholder="01XXXXXXXXX" required />
 
       <label for="university">University</label>
-      <input type="text" id="university" placeholder="BRACU/NSU/CUB" required />
+      <input type="text" id="university" placeholder="BRACU/NSU/CUB etc." required />
 
       <button type="submit" class="btn-primary">Register</button>
     </form>
@@ -31,19 +31,20 @@
     <p id="msg" class="note"></p>
   </div>
 
-  <!-- ✅ Thank You Section -->
+  <!-- Thank You Section -->
   <div class="form-container" id="thankYouSection" style="display:none;">
     <h2 class="title">✅ Registration Successful!</h2>
     <p class="subtitle">Thank you for registering, <span id="userName"></span> 🎉</p>
     <p class="subtitle">Your entry ticket is ready below:</p>
 
     <div id="ticket" class="ticket">
-      <h3>🎟️ Team Shunte Chai Workshop 2025</h3>
+      <h3>🎟️ Workshop Entry Ticket</h3>
       <p><strong>Name:</strong> <span id="ticketName"></span></p>
       <p><strong>University:</strong> <span id="ticketUni"></span></p>
-      <p><strong>Registration ID:</strong> <span id="ticketId"></span></p>
-      <p><strong>Date:</strong> December 31, 2025</p>
-      <p><strong>Venue:</strong> BRAC University Auditorium</p>
+      <p><strong>Time:</strong> 3:30 - 5:00 PM</p>
+      <p><strong>Date:</strong> October 23 - 25, 2025</p>
+      <p><strong>Venue:</strong> BRAC University</p>
+      <p><strong>Room:</strong> B block, 8th floor (8B-7C)</p>
     </div>
 
     <button class="btn-primary" id="downloadBtn">Download Ticket (JPG)</button>
@@ -68,10 +69,7 @@
       const phone = document.getElementById("phone").value.trim();
       const university = document.getElementById("university").value.trim();
 
-      // const googleFormURL = "https://script.google.com/macros/s/AKfycby95zHk8W5jXUpUXVXrGkpyuYPS2g3ZLzRL27VuQ0Ewg3qcW86OYolGpNgZaazzk8IH/exec"; // Replace this with your deployed script URL
-
       const googleFormURL = "https://corsproxy.io/?" + encodeURIComponent("https://script.google.com/macros/s/AKfycbwdtHtBBx0zvb9BnNCQv6QmgTD2MW1j1_d4EyzbrwzpYFTr6p6UdHh6-opTOCAyrHCI_Q/exec");
-
 
       const data = { name, email, phone, university };
 
@@ -93,8 +91,6 @@
         document.getElementById("userName").textContent = name;
         document.getElementById("ticketName").textContent = name;
         document.getElementById("ticketUni").textContent = university;
-        document.getElementById("ticketId").textContent =
-          "TS-" + Math.floor(100000 + Math.random() * 900000);
 
         form.reset();
       } catch (error) {
@@ -104,18 +100,18 @@
       }
     });
 
-    // 🎟️ Download ticket as high-quality JPG
+    // Download ticket as JPG
     document.getElementById("downloadBtn").addEventListener("click", () => {
       const ticketEl = document.getElementById("ticket");
 
       html2canvas(ticketEl, {
-        scale: 3,             // 🔥 higher DPI (try 2–5)
-        useCORS: true,        // allow fonts/images
-        backgroundColor: "#ffffff", // ensure solid white background
+        scale: 3,
+        useCORS: true,
+        backgroundColor: "#ffffff",
       }).then((canvas) => {
         const link = document.createElement("a");
         link.download = "Workshop_Ticket.jpg";
-        link.href = canvas.toDataURL("image/jpeg", 1.0); // full-quality JPG
+        link.href = canvas.toDataURL("image/jpeg", 1.0);
         link.click();
       });
     });
