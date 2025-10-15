@@ -104,15 +104,23 @@
       }
     });
 
+    // 🎟️ Download ticket as high-quality JPG
     document.getElementById("downloadBtn").addEventListener("click", () => {
       const ticketEl = document.getElementById("ticket");
-      html2canvas(ticketEl).then((canvas) => {
+
+      html2canvas(ticketEl, {
+        scale: 3,             // 🔥 higher DPI (try 2–5)
+        useCORS: true,        // allow fonts/images
+        backgroundColor: "#ffffff", // ensure solid white background
+      }).then((canvas) => {
         const link = document.createElement("a");
         link.download = "Workshop_Ticket.jpg";
-        link.href = canvas.toDataURL("image/jpeg");
+        link.href = canvas.toDataURL("image/jpeg", 1.0); // full-quality JPG
         link.click();
       });
     });
+
+
   </script>
 
   <style>
