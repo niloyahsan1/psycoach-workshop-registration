@@ -394,9 +394,9 @@ body.event-body {
 }
 
 .session-list li:hover {
-    background: #e0e5ff; 
+    background: #e0e5ff;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    transform: translateY(-3px); 
+    transform: translateY(-3px);
 }
 
 .bonus-section {
@@ -442,6 +442,32 @@ body.event-body {
 
 .event-extra-info a:hover {
     text-decoration: underline;
+}
+
+.radio-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.radio-group label {
+    font-weight: 200;
+    text-align: center;
+    color: #333;
+    background: #f7f8ff;
+    border-radius: 10px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.radio-group label:hover {
+    background: #e8edff;
+}
+
+.radio-group input[type="radio"] {
+    margin-right: 6px;
+    accent-color: #1a73e8;
 }
 
 footer {
@@ -494,5 +520,9 @@ footer {
 
     .session-list li {
         font-size: 0.9rem;
+    }
+
+    .radio-group {
+        grid-template-columns: 1fr;
     }
 }

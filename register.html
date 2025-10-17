@@ -24,10 +24,19 @@
       <input type="text" id="phone" placeholder="01XXXXXXXXX" required />
 
       <label for="university">University</label>
-      <input type="text" id="university" placeholder="BRACU/NSU/CUB etc." required />
+      <input type="text" id="university" placeholder="Your university name" required />
+
+      <label>Are you committed to attend all 3 sessions? (You can join any day)</label>
+      <div class="radio-group">
+        <label><input type="radio" name="attendance" value="Yes" required /> Yes</label>
+        <label><input type="radio" name="attendance" value="I'll try" /> I'll try</label>
+        <label><input type="radio" name="attendance" value="No" /> No</label>
+        <label><input type="radio" name="attendance" value="Maybe" /> Maybe</label>
+      </div>
 
       <button type="submit" class="btn-primary">Register</button>
     </form>
+
 
     <p id="msg" class="note"></p>
   </div>
@@ -70,9 +79,10 @@
       const phone = document.getElementById("phone").value.trim();
       const university = document.getElementById("university").value.trim();
 
-      const googleFormURL = "https://corsproxy.io/?" + encodeURIComponent("https://script.google.com/macros/s/AKfycbwdtHtBBx0zvb9BnNCQv6QmgTD2MW1j1_d4EyzbrwzpYFTr6p6UdHh6-opTOCAyrHCI_Q/exec");
+      const googleFormURL = "https://corsproxy.io/?" + encodeURIComponent("https://script.google.com/macros/s/AKfycbxo45gTD1GJ6V1PF_gZb7yUX_uGqmZkheWJsJxiCwLaeGkZVqfyM_CdgYESElFqyL-2/exec");
 
-      const data = { name, email, phone, university };
+      const attendance = document.querySelector('input[name="attendance"]:checked')?.value || "";
+      const data = { name, email, phone, university, attendance };
 
       msg.textContent = "Submitting...";
       msg.style.color = "#555";
