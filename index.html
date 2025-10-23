@@ -22,7 +22,7 @@
         <span>📅 October 23, 2025</span>
       </div>
       <div class="info-item">
-        <span>🕗 11:59 PM</span>
+        <span>🕗 10:59 PM</span>
       </div>
       <div class="info-item">
         <span>🎤 Workshop</span>
@@ -32,8 +32,8 @@
     <h3 class="countdown-label">Registration Countdown</h3>
     <div id="countdown" class="countdown-grid"></div>
 
-    <a href="register.html" class="btn-register">Register Now</a>
-    <!-- <a class="btn-closed">Registration is Closed!</a> -->
+    <!-- <a href="register.html" class="btn-register">Register Now</a> -->
+    <a class="btn-closed">Registration is Closed!</a>
     <!-- <button>Click Me</button> -->
 
     
@@ -69,7 +69,7 @@
   </footer>
 
   <script>
-    const eventDate = new Date("October 23, 2025 23:59:00").getTime();
+    const eventDate = new Date("October 23, 2025 22:59:00").getTime();
     const countdownEl = document.getElementById("countdown");
 
     function updateCountdown() {
